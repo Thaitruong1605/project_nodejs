@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../layouts/head')%>
+
+<body>
+    <header><%- include('../partials/header') %></header>
+    <div class="container">
+        <% if(error && error.length > 0 ){ %>
+            <div class="alert alert-danger" role="alert">
+            <% error.forEach(function(elt){%>
+                <%= elt;%><br />
+            <% }); %>
+            </div>
+        <% } %>
+        <form name="frmRegister" id="frmRegister" action="/register" method="POST"> 
+            <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" name="username" id="username" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="kh_ten">Họ tên của bạn:</label>
+                <input type="text" name="kh_ten" id="kh_ten" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" name="password" id="password" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="repassword">Nhập lại mật khẩu</label>
+                <input type="password" name="repassword" id="repassword" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="kh_email">Email: </label>
+                <input name="kh_email" id="kh_email" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="kh_dienthoai">Số điện thoại: </label>
+                <input name="kh_dienthoai" id="kh_dienthoai" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="kh_ngaysinh">Ngày sinh:</label>
+                <input type="date" id="kh_ngaysinh" name="kh_ngaysinh" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="kh_gioitinh">Giới tính:</label>
+                <select name="kh_gioitinh" id="kh_gioitinh" class="form-control" >
+                    <option value="0">Nam</option>
+                    <option value="1">Nữ</option>
+                </select>
+            </div>
+            <button type="submit" name="btnSave" id="btnSave" class="btn btn-primary">Đăng ký</button>
+        </form>
+    </div>
+    
+
+    <footer><%- include('../partials/footer') %></footer>
+    <!-- SCRIPT -->
+    <%- include('../layouts/scripts')%>
+</body>
+</html>

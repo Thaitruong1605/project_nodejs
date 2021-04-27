@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../layouts/head')%>
+
+<body>
+    <header><%- include('../partials/header') %></header>
+    <div class="container">
+        <% if(error && error.length > 0 ){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error; %>
+            </div>
+          <% } %>
+        <% if(alert && alert.length > 0 ){ %>
+            <div class="alert alert-warning" role="alert">
+                <%= alert; %>
+            </div>
+          <% } %>
+        <form name="frmSigin" id="frmSigin" action="" method="POST"> 
+            <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <input name="username" id="username" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input name="password" id="password" value="" class="form-control" />
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="cbGhinho" name="cbGhinho" />
+                <label class="form-check-label" for="cbGhinho">Ghi nhớ đăng nhập</label>
+            </div>
+            <button type="submit" name="btnSave" id="btnSave" class="btn btn-primary">Đăng nhập</button>
+        </form>
+    </div>
+    
+
+    <footer><%- include('../partials/footer') %></footer>
+    <!-- SCRIPT -->
+    <%- include('../layouts/scripts')%>
+</body>
+</html>
