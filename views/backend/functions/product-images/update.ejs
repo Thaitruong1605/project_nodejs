@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('./../../partials/header.ejs'); %>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- sitebar -->
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col-md-9 col-lg-10">
+                <div class="row">
+                    <h1>Thêm sản phẩm</h1>
+                    <hr />
+                </div>
+                <div class="row">
+                    <form class ="col" action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="pi_id">Mã Sản phẩm</label>
+                            <input type="text" class="form-control" id="pi_id" name="pi_id" value="<%= row.pi_id %>" readonly="">
+                        </div>
+                        <div class="form-group">
+                            <label for="p_id">Tên Sản phẩm</label>
+                            <select name="p_id" id="p_id" class="form-control">
+                                <% p_list.forEach( function(product) { %>
+                                <option value="<%= product.p_id; %>" <% if (row.p_id == product.p_id ){ %>selected<% } %> ><%= product.p_id+": "+product.p_name+"-"+product.p_price; %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pimg">Hình Sản phẩm</label><br />
+                            <img src="/img/products/<%= row.pi_path %>" height="300px" />
+                            <img src="/img/default.jpg" id="preview-img" height="300px" /><br/>
+                            <input type="file" id="pimg" name="pimg" /><br />
+                            <div class="preview-img-container">
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" name="btnSave">Lưu dữ liệu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <script>
+        // Hiển thị ảnh preview (xem trước) khi người dùng chọn Ảnh
+        const reader = new FileReader();
+        const fileInput = document.getElementById("pimg");
+        const img = document.getElementById("preview-img");
+        reader.onload = e => {
+            img.src = e.target.result;
+        }
+        fileInput.addEventListener('change', e => {
+            const f = e.target.files[0];
+            reader.readAsDataURL(f);
+        })
+    </script>
+</body>
+</html>

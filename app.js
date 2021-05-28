@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -11,7 +12,7 @@ var setUpPassport = require("./setuppassport");
 var app = express();
 setUpPassport();
 
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT);
 app.set("views", path.join(__dirname,"views"));
 app.set("view engine", "ejs")
 app.use(bodyParser.urlencoded({extended:false}));
@@ -26,11 +27,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
+// public thu muc uploads  
+app.use(express.static(__dirname+'/uploads'));
+// lay duong dan 
 app.use("/", require("./routes/web"));
 app.use("/backend",require("./routes/backend"));
 // app.use("/api", require("./routes/api"));
-
 
 
 app.listen(app.get("port"), function(){

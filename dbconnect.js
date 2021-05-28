@@ -1,15 +1,15 @@
 var mysql = require('mysql2');
 
 var conn = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "mobile_store"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
 
-conn.connect(function (err) {
-  if (err) console.log(err);
-  console.log("Connected!");
+conn.connect(function(err){
+  if(err) throw err;
+  console.log("Database connected");
 });
 
 module.exports = conn;

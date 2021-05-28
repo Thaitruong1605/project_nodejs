@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('./../../partials/header.ejs'); %>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- sitebar -->
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col-md-9 col-lg-10">
+                <div class="row">
+                    <h1>Thêm sản phẩm</h1>
+                    <hr />
+                </div>
+                <div class="row">
+                    <form class="col" action="" method="post" name="frmCreate" id="frmCreate" novalidate="novalidate">
+                        <div class="form-group">
+                            <label for="p_id">Mã Sản phẩm</label>
+                            <input type="text" class="form-control" id="p_id" name="p_id" value="" readonly="">
+                        </div>
+                        <div class="form-group">
+                            <label for="p_name">Tên Sản phẩm</label>
+                            <input type="text" class="form-control" id="p_name" name="p_name" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="p_price">Giá Sản phẩm</label>
+                            <input type="text" class="form-control" id="p_price" name="p_price" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="p_oldprice">Giá cũ Sản phẩm</label>
+                            <input type="text" class="form-control" id="p_oldprice" name="p_oldprice"value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="p_description">Mô tả ngắn</label>
+                            <textarea class="form-control" id="p_description" name="p_description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="p_detail">Mô tả chi tiết</label>
+                            <textarea class="form-control" id="p_detail" name="p_detail"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="p_date">Ngày cập nhật - mm/dd/yyyy</label>
+                            <input type="date" class="form-control" id="p_date" name="p_date"  value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="p_number">Số lượng</label>
+                            <input type="text" class="form-control" id="p_number" name="p_number" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="t_id">Loại sản phẩm</label>
+                            <select name="t_id" id="t_id" class="form-control">
+                                <% type_list.forEach(function(type) { %>
+                                   <option value="<%= type.t_id %>"><%= type.t_name%></option>
+                                <% }); %>                                                                 
+                                                        </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="s_id">Kích thước sản phẩm</label>
+                            <select name="s_id" id="s_id" class="form-control">
+                                <% size_list.forEach(function(size) { %>
+                                   <option value="<%= size.s_id %>"><%= size.s_name%></option>
+                                <% }); %>                                                                 
+                                                        </select>
+                        </div>
+                        <button class="btn btn-primary" name="btnSave">Lưu dữ liệu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+</body>
+</html>

@@ -6,6 +6,7 @@
 <body>
     <header><%- include('../partials/header') %></header>
     <div class="container">
+        <% if (currentUser == null) { %>
         <% if(error && error.length > 0 ){ %>
             <div class="alert alert-danger" role="alert">
                 <%= error; %>
@@ -31,9 +32,12 @@
             </div>
             <button type="submit" name="btnSave" id="btnSave" class="btn btn-primary">Đăng nhập</button>
         </form>
+        <% }else{ %>
+            <div class="alert alert-primary" role="alert">
+                Bạn đã đăng nhập!
+            </div>
+        <% } %>
     </div>
-    
-
     <footer><%- include('../partials/footer') %></footer>
     <!-- SCRIPT -->
     <%- include('../layouts/scripts')%>

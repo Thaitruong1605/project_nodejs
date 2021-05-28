@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('../../partials/header.ejs'); %>
+    <!-- sitebar -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col">
+                <h1>Danh sách sản phẩm</h1><a class= "btn btn-primary" href="/backend/size/create">Thêm</a>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table">
+                        <caption>List of products</caption> 
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Hành động</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% list_size.forEach(function(size){ %>
+                          <tr>
+                            <th scope="row"><%= size.s_id %></th>
+                            <td><%= size.s_name %> </td>
+                            <td>
+                              <a href="/backend/size/update?s_id=<%= size.s_id %>" class="btn btn-warning">
+                                  <span data-feather="edit">Sửa</span>
+                              </a>
+                              <a href="/backend/size/delete?s_id=<%= size.s_id %>" class="btn btn-danger">
+                                  <span data-feather="delete">Xóa</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <% }); %>
+                          
+                        </tbody>
+                    </table>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

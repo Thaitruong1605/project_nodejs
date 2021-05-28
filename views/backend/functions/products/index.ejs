@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('../../partials/header.ejs'); %>
+    <!-- sitebar -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col">
+                <h1>Danh sách sản phẩm</h1><a class= "btn btn-primary" href="/backend/products/create">Thêm</a>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table">
+                        <caption>List of products</caption> 
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Giá cũ</th>
+                            <th scope="col">Ngày cập nhật</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">Chi tiết</th>
+                            <th scope="col">Loại</th>
+                            <th scope="col">Kích thước</th>
+                            <th scope="col">Hành động</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% list_product.forEach(function(product){ %>
+                          <tr>
+                            <th scope="row"><%= product.p_id %></th>
+                            <td><%= product.p_name %> </td>
+                            <td><%= product.p_price %> </td>
+                            <td><%= product.p_oldprice %> </td>
+                            <td><%= moment(product.p_date).format('DD-MM-YYYY'); %> </td>
+                            <td><%= product.p_number %> </td>
+                            <td><%= product.p_description %> </td>
+                            <td><%= product.p_detail %> </td>
+                            <td><%= product.t_name %> </td>
+                            <td><%= product.s_name %> </td>
+                            <td>
+                              <a href="/backend/products/update?p_id=<%= product.p_id %>" class="btn btn-warning">
+                                  <span data-feather="edit">Sửa</span>
+                              </a>
+                              <a href="/backend/products/delete?p_id=<%= product.p_id %>" class="btn btn-danger">
+                                  <span data-feather="delete">Xóa</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <% }); %>
+                          
+                        </tbody>
+                    </table>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
