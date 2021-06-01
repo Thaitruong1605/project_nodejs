@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('./../../partials/header.ejs'); %>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- sitebar -->
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col-md-9 col-lg-10">
+                <div class="row">
+                    <h1>Sửa hình thức thanh toán sản phẩm</h1>
+                    <hr />
+                </div>
+                <div class="row">
+                    <form class="col" action="" name="frmCraeteBrand" method="post">
+                        <div class="form-group"> 
+                            <label for="pmt_id">ID: </label>
+                            <input type="text" name="pmt_id" id="pmt_id" class="form-control" value="<%= row[0].pmt_id %>" readonly/>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="pmt_name">Tên: </label>
+                            <input type="text" name="pmt_name" id="pmt_name" class="form-control" value="<%= row[0].pmt_name %>" />
+                        </div>
+                        <button type="submit" name="btnSave" class="btn btn-primary" >Lưu</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+</body>
+</html>

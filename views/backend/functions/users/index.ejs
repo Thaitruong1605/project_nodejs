@@ -23,7 +23,6 @@
                             <th scope="col">Thông tin liên lạc</th>
                             <th scope="col">Giới tính</th>
                             <th scope="col">Ngày sinh</th>
-                            <th scope="col">Trạng thái</th>
                             <th scope="col">Loại</th>
                             <th scope="col">Hành động</th>
                           </tr>
@@ -42,7 +41,6 @@
                             </td>
                             <td><% if (user.isMale == 1){ %>Nam<%} else {%>Nữ<%}%></td>
                             <td><%= moment(user.birthday).format('DD-MM-YYYY') %> </td>
-                            <td><% if (user.is_active == 1){ %><p class="text-success">Hoạt động</p><%} else {%><p class="text-success">Khoá</p><%}%></td>
                             <td><% if (user.is_admin == 1){ %><p class="text-warning font-weight-bold">Quản trị</p><%} else {%>Khách hàng<%}%></td>
                             <td>
                               <a href="/backend/users/update?username=<%= user.username %>" class="btn btn-warning">

@@ -15,8 +15,10 @@ let addUser = (user) => {
                 'INSERT INTO users set ? ', 
                 user,
                 function(err){
-                    console.log(this.sql);
-                    if (err) { console.log(err);}
+                    // console.log(this.sql);
+                    if (err) { 
+                        reject({error: err});
+                    }
                     resolve("A new user has been created!");
                 }
             );

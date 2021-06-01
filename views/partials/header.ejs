@@ -1,17 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Mobile store</a>
+  <a class="navbar-brand" href="/">GREEN GARDEN</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Trang chủ<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/products">Sản phẩm<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/cart">Giỏ hàng<span class="sr-only"></span></a>
+      </li>
+      <% if (currentUser !=null && currentUser.is_admin == 1) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/backend">Quản lý</a>
+        </li>
+      <% } %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
       <% if(currentUser != null ) { %>
         <li class ="nav-item">
-          <a href="#">Wellcome, <%= currentUser %>! </a>
+          <a class="nav-link text-primary" href="/cart">Wellcome, <%= currentUser.username %> </a>
+        </li>
+        <li class ="nav-item">
           <a class="nav-link" href="/logout">Đăng xuất</a>
         </li>
       <% } %>

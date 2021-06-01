@@ -43,8 +43,7 @@ let user_update = async (req, res) => {
             address: req.body.address,
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
-            birthday: req.body.birthday,
-            is_active:  req.body.is_active,
+            birthday: req.body.birthday, 
             is_admin:  req.body.is_admin
         }
         if (username != ""){

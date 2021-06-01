@@ -1,4 +1,3 @@
-const { resolve } = require('path');
 const conn = require('../dbconnect');
 let type_selectAll = () => {
     return new Promise( (resolve, reject) => {

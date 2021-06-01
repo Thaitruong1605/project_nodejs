@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./../layouts/head')%>
+
+<body>
+    <header><%- include('./../partials/header') %></header>
+
+    <footer><%- include('./../partials/footer') %></footer>
+    <!-- SCRIPT -->
+    <%- include('./../layouts/scripts')%>
+    <div class="container">
+      <h4>Giỏ hàng của bạn</h4>
+      <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col">Xoá</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% if (!products || products[0] == null){ %>Không có sản phẩm nào được thêm vào giỏ của bạn!<% }else {i=1; total=0; %>
+              <%products.forEach(function(product){ %>
+              <tr>
+                <th scope="row"><%=i++%></th>
+                <td><%= product.p_name%></td>
+                <td><img src="/img/products/<%= product.pi_path%>" height="100" /></td>
+                <td><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price)%></td>
+                <td>
+                    <form action="/update-number-cart" method ="GET" >
+                        <input type="hidden" name ="p_id" value="<%= product.p_id%>" >
+                        <div class="row">
+                            <div class="form-group col-8">
+                                <input type="text" class="form-control "name ="number" value="<%= product.number%>" >
+                            </div>
+                            <div class="form-group col-4">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+                <td><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price*product.number)%></td>
+                <td>
+                    <a class="btn btn-danger" href="/remove-from-cart?p_id=<%=product.p_id%>">Xoá</a>   
+                </td>
+              </tr>
+            <%  total +=parseInt(product.p_price*product.number)});  %>
+              <tr>
+                <th colspan="5" class="text-right">Tổng cộng:</th>
+                <td colspan="2"><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(total) %></td>
+              </tr>
+            </tbody>
+          </table>
+          <a class="btn btn-primary" href="/order">Đặt hàng</a>
+          <%}%>
+        </div>
+    </div>
+</body>
+</html>

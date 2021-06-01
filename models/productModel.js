@@ -1,4 +1,3 @@
-const { resolve } = require('path');
 const conn = require('../dbconnect');
 
 let product_selectAll = () => {
@@ -36,6 +35,7 @@ let product_create = (data) => {
             'INSERT INTO products set ?',
             data, 
             function (err) {
+                console.log(this.sql)
                 if (err) { reject(err); }
                 else {
                     resolve("A new row has been created");

@@ -8,7 +8,7 @@ const session = require("express-session");
 const flash = require("connect-flash"); 
 
 var setUpPassport = require("./setuppassport");
-
+var isLogined = require('./auth').ensureAuthenticated;
 var app = express();
 setUpPassport();
 
@@ -27,11 +27,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-// public thu muc uploads  
+// public thu muc uploads,assets
 app.use(express.static(__dirname+'/uploads'));
+app.use(express.static(__dirname+'/assets'));
 // lay duong dan 
 app.use("/", require("./routes/web"));
-app.use("/backend",require("./routes/backend"));
+app.use("/backend", require("./routes/backend"));
 // app.use("/api", require("./routes/api"));
 
 

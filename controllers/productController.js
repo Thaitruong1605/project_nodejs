@@ -48,8 +48,6 @@ let product_create = async (req, res) => {
         console.log(p_name);
         if (!p_name){
             error.push("Vui lòng nhập đầy đủ thông tin!");
-        }else if (p_name.length < 12 || p_name > 3){
-            error.push("Vui lòng nhập tên sản phẩm nhiều hơn 3 và nhỏ hơn 12 ký tự!");
         }else{
             let data = {
                 p_name: req.body.p_name,

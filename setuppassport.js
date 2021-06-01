@@ -12,8 +12,9 @@ module.exports = function () {
   passport.use(new LocalStrategy(
     async function (username, password, done) {
       try{
-        await loginController.checkUser(username, password);
-        return done(null, username);
+        await loginController.checkUser(username, password).then(function(data){
+          return done(null, data);
+        });
       }catch(err){        
         return done(null, false, { message: err });
       }

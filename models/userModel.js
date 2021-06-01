@@ -1,9 +1,8 @@
-const { resolve } = require('path');
 const conn = require('../dbconnect');
 let user_selectAll = () => {
     return new Promise( (resolve, reject) => {
         conn.query(
-            'SELECT username, name, email, phoneNumber, isMale, birthday, address, is_admin, is_active FROM users',
+            'SELECT username, name, email, phoneNumber, isMale, birthday, address, is_admin FROM users',
             function (err, results) {
                 if (err) { reject(err); }
                 else {
@@ -16,7 +15,7 @@ let user_selectAll = () => {
 let user_selectbyUsername = (username) => {
     return new Promise( async (resolve, reject) => {
         conn.query(
-            'SELECT username, name, email, phoneNumber, isMale, birthday, address, is_admin, is_active FROM users WHERE username = ?',
+            'SELECT username, name, email, phoneNumber, isMale, birthday, address, is_admin FROM users WHERE username = ?',
             username,
             function (err, results) {
                 if (err) { reject(err); }

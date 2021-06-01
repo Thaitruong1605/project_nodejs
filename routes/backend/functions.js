@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 var fs = require('fs');
 
+
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -18,6 +19,7 @@ var storage = multer.diskStorage({
 var upload = multer({storage:storage}).single('pimg');
 
 const sizeController = require("../../controllers/sizeController");
+const paymentController = require("../../controllers/paymentController");
 const typeController = require("../../controllers/typeController");
 const userController = require("../../controllers/userController");
 const productController = require("../../controllers/productController");
@@ -45,6 +47,25 @@ router.post("/size/update", function (req, res) {
 });
 router.get("/size/delete", function (req, res) {
     sizeController.size_delete(req, res);
+});
+// PAYMENT ---------------------------------------------------------------------------- 
+router.get("/payments", function (req, res) {
+    paymentController.payment_select(req, res);
+});
+router.get("/payments/create", function (req, res) {
+    res.render("./backend/functions/payments/create", { page_name: "Thêm - Kích thước sản phẩm" });
+});
+router.post("/payments/create", function (req, res) {
+    paymentController.payment_create(req, res);
+});
+router.get("/payments/update", function (req, res) {
+    paymentController.payment_getupdate(req, res);
+});
+router.post("/payments/update", function (req, res) {
+    paymentController.payment_update(req, res);
+});
+router.get("/payments/delete", function (req, res) {
+    paymentController.payment_delete(req, res);
 });
 // TYPE ---------------------------------------------------------------------------- 
 router.get("/types", function (req, res) {
@@ -97,6 +118,7 @@ router.post("/products/update", function (req, res) {
 router.get("/products/delete", function (req, res) {
     productController.product_delete(req, res);
 });
+
 // IMAGES ----------------------------------
 
 router.get("/product-images", function (req, res) {
@@ -139,4 +161,5 @@ router.get("/product-images/delete", function (req, res) {
         productimageController.productimage_delete(req, res);
     });
 });
+
 module.exports = router;

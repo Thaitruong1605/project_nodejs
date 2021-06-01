@@ -30,7 +30,7 @@ let createUser = async (req, res) => {
             return res.redirect("/login");
         } catch (err) {
             req.flash("error", err);
-            return res.redirect("/register");
+            return res.redirect(req.get('referer'));
         }
     }
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./../layouts/head')%>
+
+<body>
+    <header><%- include('./../partials/header') %></header>
+
+    <footer><%- include('./../partials/footer') %></footer>
+    <!-- SCRIPT -->
+    <%- include('./../layouts/scripts')%>
+    <div class="container">
+        <h4>Đơn hàng của bạn</h4>
+        <div class="row">
+              <table class="table col">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Hình</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% if (!products || products[0] == null){ %>Không có sản phẩm nào được thêm vào giỏ của bạn!
+                <% }else {i=1; total=0; %>
+                  <%products.forEach(function(product){ %>
+                  <tr>
+                    <th scope="row"><%=i++%></th>
+                    <td><%= product.p_name%></td>
+                    <td><img src="/img/products/<%= product.pi_path%>" height="100" /></td>
+                    <td><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price)%></td>
+                    <td> <%= product.number%> </td>
+                    <td><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price*product.number)%></td>
+                  </tr>
+                <%  total +=parseInt(product.p_price*product.number)});  %>
+                  <tr>
+                    <th colspan="5" class="text-right">Tổng cộng:</th>
+                    <td colspan="2"><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(total) %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <form action="/comfirm-order" class="col" method="POST">
+                <input type="hidden" name="username" value="<%= currentUser.username %>" />
+                <input type="hidden" name="o_totalamount" value="<%= total%>" />
+                <div class="form-group">
+                  <label for="pmt_id" >Hình thức thanh toán</label> 
+                  <select id ="pmt_id" name="pmt_id" class="form-control">
+                    <% payments.forEach(function(payment) { %>
+                    <option value="<%= payment.pmt_id %>"><%= payment.pmt_name %></option>
+                    <%})%>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="o_address" >Địa chỉ đặt hàng:</label> 
+                  <textarea class="form-control" name="o_address" id="o_address"></textarea>
+                </div>
+                <button class="btn btn-primary" name="btnSave">Xác nhận đặt hàng</button>
+              </form>
+              <%}%>
+        </div>
+    </div>
+</body>
+</html>
