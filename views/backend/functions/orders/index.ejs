@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('../../partials/header.ejs'); %>
+    <!-- sitebar -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col">
+              <h1>Danh sách sản phẩm</h1><a class= "btn btn-primary" href="/backend/orders/create">Thêm</a>
+              <hr />
+              <div class="table-responsive">
+                  <table class="table">
+                      <caption>List of orders</caption> 
+                      <thead>
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Tên khách hàng</th>
+                          <th scope="col">Ngày đặt hàng</th>
+                          <th scope="col">Địa chỉ giao hàng</th>
+                          <th scope="col">Hình thức thanh toán</th>
+                          <th scope="col">Trạng thái</th>
+                          <th scope="col">Tổng cộng</th>
+                          <th scope="col">Hành động</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% list_order.forEach(function(order){ %>
+                        <tr>
+                          <th scope="row"><%= order.o_id %></th>
+                          <td><%= order.username %> </td>
+                          <td><%= moment(order.o_date).format('DD-MM-YYYY'); %> </td>
+                          <td><%= order.o_address %> </td>
+                          <td><% payments.forEach(function(element){ if (element.pmt_id == order.pmt_id){ %>
+                            <%= element.pmt_name %>
+                            <% }}) %> </td>
+                          <td>
+                            <% if(order.o_isPaid == 0 ) {%>
+                              Chưa thanh toán
+                            <%}else{%>
+                              Đã thanh toán
+                            <%}%>
+                          </td>
+                          <td><%= order.o_totalamount %> </td>
+                          <td>
+                            <a href="/backend/orders/order_detail?o_id=<%= order.o_id %>" class="btn btn-info">
+                                <span data-feather="edit">Chi tiết đơn hàng</span>
+                            </a>
+                          </td>
+                        </tr>
+                        <% }); %>
+                        
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

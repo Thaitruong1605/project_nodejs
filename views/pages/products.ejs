@@ -5,29 +5,31 @@
 
 <body>
     <header><%- include('./../partials/header') %></header>
-
-    <footer><%- include('./../partials/footer') %></footer>
-    <!-- SCRIPT -->
-    <%- include('./../layouts/scripts')%>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2">Category</div>
-            <div class="col-md-10">
+            <div class="col-md-3">Category</div>
+            <div class="col-md-9">
                 <div class="row">
                     <% data.forEach(function(product){ %>
-                    <div class="card col-md-4" style="width: 18rem;">
-                        <img src="/img/products/<%= product.pi_path %>"  height="400" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= product.p_name %> </h5>
-                            <p class="card-text">Mô tả: <%= product.p_description %></p>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="/img/products/<%= product.pi_path %>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                <h5 class="card-title"><%= product.p_name %> </h5>
                             <p class="card-text">Giá: <%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price) %></p>
                             <a href="/add-to-cart?p_id=<%= product.p_id %>" class="btn btn-primary">Thêm vào giỏ hàng</a>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
                     <% }) %>
                 </div>
             </div>
         </div>
     </div>
+    
+    <footer><%- include('./../partials/footer') %></footer>
+    <!-- SCRIPT -->
+    <%- include('./../layouts/scripts')%>
 </body>
 </html>

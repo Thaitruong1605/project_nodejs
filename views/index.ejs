@@ -3,8 +3,122 @@
 <%- include('./layouts/head')%>
 <body>
     <header><%- include('./partials/header') %></header>
-    <h1>Index</h1>
+    <div>
+        <img src="/img/wallpaper3.jpg" width="100%"/>
+    </div>
+    <div class="container mx-auto p-2" >
+        <h2 class="text-center">Sản phẩm của cửa hàng</h2>
+        <div id="carouselExampleIndicators" class="carousel slide" style="height:650px;" data-ride="carousel">
+            <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row pt-5 mx-auto">
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/img/p1.jpg" class="card-img-top w-100" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">Môn nhung đen</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/img/p2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">Đa búp cẩm thạch xanh</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/img/p3.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">Đa búp cẩm thạch đỏ</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row pt-5 mx-auto">
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/img/p4.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">Bàng Singapore</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/img/p5.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">Môn quan âm nhỏ</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/img/p6.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">Môn thiên đường</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="container-fluid mx-auto" >
+        <div style="background-color: #DCE5EE;">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-6">
+                    <img src="/img/p7.jpg" class="w-100" />
+                </div>
+                <div class="col-md-6 " id="left-content" >
+                    <h2 class="text-center w-100 font-weight-bold">Giới thiệu - Green Garden</h2><br />
+                    <p class="text-center">
+                        CHIA SẺ những trải nghiệm trồng cây của một người không chuyên<br />
+                        CUNG CẤP Hoa hồng ngoại và các loại hoa kiểng, kiểng lá từ Làng hoa Sa Đéc<br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mx-auto" >
+        <div style="background-color: #CCCDD0;">
+            <div class="row d-flex align-items-center" style="height:450px;">
+                <div class="col-md-12 " id="left-content" >
+                    <h2 class="text-center w-100 font-weight-bold">Đăng ký</h2>
+                    <p class="text-center">
+                        Đăng ký để nhận thông tin về sản phẩm mới nhất từ chúng tôi!
+                    </p>    
+                    <div class="row mx-auto">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 input-group">
+                            <input class="form-control width100">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary">Đăng ký</button>
+                            </span>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer><%- include('./partials/footer') %></footer>
     <!-- SCRIPT -->
     <%- include('./layouts/scripts')%>

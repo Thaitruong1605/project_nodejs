@@ -118,9 +118,10 @@ router.post('/comfirm-order',async function(req, res){
     var order_data = {
         username: req.body.username,
         o_totalamount: req.body.o_totalamount,
-        o_address:req.body.o_address,
+        o_address: req.body.o_address,
         pmt_id: req.body.pmt_id,
     }
+    console.log(req.body.pmt_id);
     try {
         await orderAPI.put(order_data).then(async function (data){
             try {

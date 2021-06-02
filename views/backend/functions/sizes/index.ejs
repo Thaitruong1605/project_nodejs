@@ -10,11 +10,11 @@
         <div class="row">
             <%- include('./../../partials/sitebar.ejs'); %>
             <div class="col">
-                <h1>Danh sách sản phẩm</h1><a class= "btn btn-primary" href="/backend/size/create">Thêm</a>
+                <h1>Danh sách sản phẩm</h1><a class= "btn btn-primary" href="/backend/sizes/create">Thêm</a>
                 <hr />
                 <div class="table-responsive">
                     <table class="table">
-                        <caption>List of products</caption> 
+                        <caption>List of sizes</caption>
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -28,10 +28,10 @@
                             <th scope="row"><%= size.s_id %></th>
                             <td><%= size.s_name %> </td>
                             <td>
-                              <a href="/backend/size/update?s_id=<%= size.s_id %>" class="btn btn-warning">
+                              <a href="/backend/sizes/update?s_id=<%= size.s_id %>" class="btn btn-warning">
                                   <span data-feather="edit">Sửa</span>
                               </a>
-                              <a href="/backend/size/delete?s_id=<%= size.s_id %>" class="btn btn-danger">
+                              <a href="/backend/sizes/delete?s_id=<%= size.s_id %>" class="btn btn-danger">
                                   <span data-feather="delete">Xóa</span>
                               </a>
                             </td>

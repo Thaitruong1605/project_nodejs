@@ -17,7 +17,6 @@ let payment_create = async (req, res) => {
 };
 let payment_update = async (req, res) => {
     let error = [];
-    console.log(req);
     if (typeof req.body.btnSave !== 'undefined') {
         let pmt_id = req.body.pmt_id;
         let pmt_name = req.body.pmt_name;

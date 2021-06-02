@@ -23,6 +23,7 @@ const paymentController = require("../../controllers/paymentController");
 const typeController = require("../../controllers/typeController");
 const userController = require("../../controllers/userController");
 const productController = require("../../controllers/productController");
+const orderController = require("../../controllers/orderController");
 const productimageController = require("../../controllers/productimageController");
 
 router.get("/", function (req, res) {
@@ -30,22 +31,22 @@ router.get("/", function (req, res) {
 });
 
 // SIZE ---------------------------------------------------------------------------- 
-router.get("/size", function (req, res) {
+router.get("/sizes", function (req, res) {
     sizeController.size_select(req, res);
 });
-router.get("/size/create", function (req, res) {
-    res.render("./backend/functions/size/create", { page_name: "Thêm - Kích thước sản phẩm" });
+router.get("/sizes/create", function (req, res) {
+    res.render("./backend/functions/sizes/create", { page_name: "Thêm - Kích thước sản phẩm" });
 });
-router.post("/size/create", function (req, res) {
+router.post("/sizes/create", function (req, res) {
     sizeController.size_create(req, res);
 });
-router.get("/size/update", function (req, res) {
+router.get("/sizes/update", function (req, res) {
     sizeController.size_getupdate(req, res);
 });
-router.post("/size/update", function (req, res) {
+router.post("/sizes/update", function (req, res) {
     sizeController.size_update(req, res);
 });
-router.get("/size/delete", function (req, res) {
+router.get("/sizes/delete", function (req, res) {
     sizeController.size_delete(req, res);
 });
 // PAYMENT ---------------------------------------------------------------------------- 
@@ -162,4 +163,11 @@ router.get("/product-images/delete", function (req, res) {
     });
 });
 
+// ORDER ----------------------------------\
+router.get("/orders", function(req, res){
+    orderController.order_select(req,res);
+})
+router.get("/orders/order_detail", function(req, res){
+    orderController.order_detail(req,res);
+})
 module.exports = router;

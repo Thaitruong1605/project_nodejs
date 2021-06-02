@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<%- include('./../../layouts/head'); %>
+<body>
+    <%- include('../../partials/header.ejs'); %>
+    <!-- sitebar -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('./../../partials/sitebar.ejs'); %>
+            <div class="col">
+              <h1>Chi tiết đơn hàng - ID: <%= o_id%></h1>
+              <hr />
+              <table class="table">
+                <caption>List of products</caption> 
+                <thead>
+                  <tr>
+                    <th scope="col">ID sản phẩm </th>
+                    <th scope="col">Tên sản phẩm </th>
+                    <th scope="col">Giá </th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Tổng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (!data || data[0] == null){ %>
+                    Không có sản phẩm nào được thêm vào giỏ của bạn!
+                    <% }else {i=1; total=0; %>
+                  <% data.forEach(function(element){ %>
+                  <tr>
+                    <th scope="row"><%= element.p_id %></th>
+                    <td><%= element.p_name%> </td>
+                    <td><%=  Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(element.odp_price)%> </td>
+                    <td><%= element.odp_number%> </td>
+                    <td><%=  Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(element.odp_price * element.odp_number)%> </td>
+                  </tr>
+                  <% total+= element.odp_price * element.odp_number; }) %>
+                  <% } %>
+                  
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

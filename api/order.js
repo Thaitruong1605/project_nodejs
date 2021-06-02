@@ -17,6 +17,7 @@ let put = (data) => {
             'INSERT INTO orders set ?, o_date = NOW();',
             data,
             function(err, results){
+                // console.log(this.sql);
                 if (err) rejects(err);
                 else resolve(results);
             }
@@ -40,7 +41,7 @@ let put_order_detail = (data) => {
             'INSERT INTO order_details set ?',
             data,
             function(err, results){
-                console.log(this.sql);
+                // console.log(this.sql);
                 if (err) rejects(err);
                 else resolve(results);
             }

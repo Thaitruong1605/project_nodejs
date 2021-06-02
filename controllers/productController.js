@@ -56,7 +56,6 @@ let product_create = async (req, res) => {
                 p_date: req.body.p_date,
                 p_number: req.body.p_number,
                 p_description: req.body.p_description,
-                p_detail: req.body.p_detail,
                 s_id: req.body.s_id,
                 t_id: req.body.t_id
             }
@@ -104,7 +103,6 @@ let product_update = async (req, res) => {
             p_date: req.body.p_date,
             p_number: req.body.p_number,
             p_description: req.body.p_description,
-            p_detail: req.body.p_detail,
             s_id: req.body.s_id,
             t_id: req.body.t_id
         }
