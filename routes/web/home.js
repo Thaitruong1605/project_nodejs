@@ -5,12 +5,13 @@ const productAPI = require('./../../api/product');
 const paymentAPI = require('./../../api/payment');
 const orderAPI = require('./../../api/order');
 const session = require('express-session').Session;
+const moment = require('moment');
 
 var isLogined = require('../../auth').ensureAuthenticated;
 var router = express.Router();
 // index --------------------------------------------------
 router.get('/', function (req, res) {
-    res.render('./', { page_name: 'Mobile store' });
+    res.render('./', { page_name: 'Trang chủ' });
 });
 // auth --------------------------------------------------
 router.get('/register', function (req, res) {
@@ -40,6 +41,7 @@ router.get('/products',async function(req, res){
             res.render('./pages/products', { page_name: 'Sản phẩm', data});
         })
     }catch(err){
+        console.log(err);
         return res.redirect('/');
     }
 });
@@ -152,6 +154,65 @@ router.post('/comfirm-order',async function(req, res){
         });
     }catch (err){
         res.redirect(req.get('referer'));
+    }
+});
+router.get('/list_orders',isLogined ,async function(res, req){
+    let payments;
+    try {
+        await paymentAPI.get().then(function(data){
+            payments=data;
+        })
+    }catch(err){
+        console.log(err);
+        return req.redirect('/');
+    }
+    try{
+        await orderAPI.get_byUsername(req.locals.currentUser.username).then(function (data){
+            return req.render('./pages/list_orders', {
+                page_name : 'Danh sách đơn hàng',
+                list_order: data,
+                moment:moment,
+                payments: payments
+            });
+        });
+    }catch(err){
+        console.log(err);
+        return req.redirect('/');
+    }
+});
+router.get('/order_detail',isLogined,async function(req, res){
+    let o_id = req.query.o_id;
+    let payments;
+    let order;
+    try {
+        await paymentAPI.get().then(function(data){
+            payments=data;
+        })
+    }catch(err){
+        console.log(err);
+        return res.redirect(req.get('referer'));
+    }
+    try{
+        await orderAPI.get_byId(o_id).then(function (data){
+            order = data[0];
+        });
+    }catch(err){
+        console.log(err);
+        return res.redirect(req.get('referer'));
+    }
+    try {
+        await orderAPI.get_order_detail(o_id).then(function(data){
+            return res.render('./pages/detail', {
+                page_name: 'Chi tiết đơn hàng',
+                payments: payments,
+                order: order,
+                detail: data,
+                moment: moment
+            });
+        });
+    }catch(err){
+        console.log(err)
+        return res.redirect(req.get('referer'));
     }
 });
 module.exports = router;

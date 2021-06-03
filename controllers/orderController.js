@@ -6,7 +6,6 @@ let order_select = async (req, res) => {
     try{
         await paymentModel.payment_selectAll().then(async function(data){
             let payments = data ;
-            console.log(payments);
             try{
                 orderModel.order_selectAll().then( function(data){
                     return res.render("./backend/functions/orders", { page_name: "Đơn hàng", list_order: data,payments, moment:moment} );
@@ -43,9 +42,11 @@ let order_detail = async (req,res) =>{
             return res.render("./backend/functions/orders/detail", { page_name: "Đơn hàng", data, o_id: req.query.o_id, moment:moment});
         });
     }catch (err) {
-        // return res.redirect("/backend/orders");
+        return res.redirect("/backend/orders");
     }
 }
+
+
 module.exports = {
     order_select,
     payment_confirmation,

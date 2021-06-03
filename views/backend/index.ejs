@@ -8,13 +8,83 @@
         <!-- sitebar -->
         <div class="row">
             <%- include('./partials/sitebar'); %>  
-            <div class="col">
+            <div class="col-md-9 col-lg-10 ">
                 <h1>WELLCOM TO DASHBOARD</h1>
+                <hr />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card card-stats h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Đơn hàng</h5>
+                                    <span class="h2 font-weight-bold mb-0"><%= count_orders%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Khách hàng</h5>
+                                    <span class="h2 font-weight-bold mb-0"><%= count_users%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Sản phẩm</h5>
+                                    <span class="h2 font-weight-bold mb-0"><%= count_products%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Tổng thu nhập</h5>
+                                    <span class="h2 font-weight-bold mb-0"><%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(totalamount); %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class ="col">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- footer -->
     </div>
-    
+   
+    <% var total = totalamount_per_month; %>
     <%- include('./layouts/scripts.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    var m, total 
+    m = [<% totalamount_per_month.forEach(element => { %> <%= element.m+',' %> <% }); %>];
+    total = [<% totalamount_per_month.forEach(element => { %> <%= element.total+',' %> <% }); %>];
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: m,
+            datasets: [{
+                label: 'VNĐ/tháng',
+                data: total,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
 </body>
 </html>

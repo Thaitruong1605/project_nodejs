@@ -10,7 +10,7 @@
         <div class="row">
             <%- include('./../../partials/sitebar.ejs'); %>
             <div class="col">
-              <h1>Danh sách sản phẩm</h1><a class= "btn btn-primary" href="/backend/orders/create">Thêm</a>
+              <h1>Danh sách sản phẩm</h1>
               <hr />
               <div class="table-responsive">
                   <table class="table">
@@ -39,9 +39,9 @@
                             <% }}) %> </td>
                           <td>
                             <% if(order.o_isPaid == 0 ) {%>
-                              Chưa thanh toán
+                              <span class="badge badge-warning">Chưa thanh toán</span>
                             <%}else{%>
-                              Đã thanh toán
+                              <span class="badge badge-success">Đã thanh toán</span>
                             <%}%>
                           </td>
                           <td><%= order.o_totalamount %> </td>

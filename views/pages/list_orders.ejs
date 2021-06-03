@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./../layouts/head')%>
+
+<body>
+    <header><%- include('./../partials/header') %></header>
+    <!-- SCRIPT -->
+    <%- include('./../layouts/scripts')%>
+    <div class="container">
+      <h4>Danh sách đơn hàng của bạn</h4>
+      <div class="row">
+        <div class="col">
+  
+            <table class="table">
+              <caption>List of orders</caption> 
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Ngày đặt hàng</th>
+                  <th scope="col">Địa chỉ giao hàng</th>
+                  <th scope="col">Hình thức thanh toán</th>
+                  <th scope="col">Trạng thái</th>
+                  <th scope="col">Tổng cộng</th>
+                  <th scope="col">Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% list_order.forEach(function(order){ %>
+                <tr>
+                  <th scope="row"><%= order.o_id %></th>
+                  <td><%= moment(order.o_date).format('DD-MM-YYYY'); %> </td>
+                  <td><%= order.o_address %> </td>
+                  <td><% payments.forEach(function(element){ if (element.pmt_id == order.pmt_id){ %>
+                    <%= element.pmt_name %>
+                    <% }}) %> </td>
+                  <td>
+                    <% if(order.o_isPaid == 0 ) {%>
+                      Chưa thanh toán
+                    <%}else{%>
+                      Đã thanh toán
+                    <%}%>
+                  </td>
+                  <td><%= order.o_totalamount %> </td>
+                  <td>
+                    <a href="/order_detail?o_id=<%= order.o_id %>" class="btn btn-info">
+                        <span data-feather="edit">Chi tiết đơn hàng</span>
+                    </a>
+                  </td>
+                </tr>
+                <% }); %>
+                
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

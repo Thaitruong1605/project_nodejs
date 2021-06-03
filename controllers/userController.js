@@ -71,7 +71,7 @@ let user_getupdate = async (req, res) => {
 }
 let user_delete = async (req, res) => {
     try{
-        userModel.user_delete(req.query.t_id).then( function(data){
+        userModel.user_delete(req.query.username).then( function(data){
             return res.redirect("/backend/users");
         });
     }catch (err){
@@ -80,10 +80,11 @@ let user_delete = async (req, res) => {
         return res.redirect("/backend/users");
     }
 }
+
 module.exports = {
     user_create,
     user_update,
     user_getupdate,
     user_select,
-    user_delete
+    user_delete,
 }

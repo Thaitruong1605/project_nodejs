@@ -5,25 +5,21 @@
 
 <body>
     <header><%- include('./../partials/header') %></header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-3">Category</div>
-            <div class="col-md-9">
-                <div class="row">
-                    <% data.forEach(function(product){ %>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="/img/products/<%= product.pi_path %>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <h5 class="card-title"><%= product.p_name %> </h5>
-                            <p class="card-text">Giá: <%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price) %></p>
-                            <a href="/add-to-cart?p_id=<%= product.p_id %>" class="btn btn-primary">Thêm vào giỏ hàng</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    <% }) %>
+            <% var length =  data.length%>
+            <div class="col-md-4 mb-4">
+            <% data.forEach(function(product, index){%>
+                <div class="card">
+                    <img src="/img/products/<%= product.pi_path %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.p_name%> </h5>
+                        <p class="card-text">Giá: <%= Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.p_price) %></p>
+                        <a href="/add-to-cart?p_id=<%= product.p_id %>" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                    </div>
                 </div>
+                <% if (Math.floor(length/3) < length/3){length=Math.floor(length/3)*3+3 } if ( (index+1)% Math.floor(length/3) == 0 && index+1 != length) { %></div><div class="col-md-4 mb-4"><% }%>
+            <% }) %>
             </div>
         </div>
     </div>
@@ -31,5 +27,6 @@
     <footer><%- include('./../partials/footer') %></footer>
     <!-- SCRIPT -->
     <%- include('./../layouts/scripts')%>
+   
 </body>
 </html>

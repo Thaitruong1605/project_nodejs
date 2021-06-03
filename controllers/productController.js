@@ -52,7 +52,6 @@ let product_create = async (req, res) => {
             let data = {
                 p_name: req.body.p_name,
                 p_price: req.body.p_price,
-                p_oldPrice: req.body.p_oldPrice ,
                 p_date: req.body.p_date,
                 p_number: req.body.p_number,
                 p_description: req.body.p_description,
@@ -99,7 +98,6 @@ let product_update = async (req, res) => {
         let data = {
             p_name: req.body.p_name,
             p_price: req.body.p_price,
-            p_oldPrice: req.body.p_oldPrice ,
             p_date: req.body.p_date,
             p_number: req.body.p_number,
             p_description: req.body.p_description,
@@ -131,11 +129,23 @@ let product_delete = async (req, res) => {
         return res.redirect("/backend/products");
     }
 }
+let count = async (req, res) => {
+    try{
+        productModel.product_delete().then( function(data){
+            return data;
+        })
+    }catch(err){
+        console.log(err);
+        req.flash("error", err);
+        return res.redirect("/backend/products");
+    }
+}
 module.exports = {
     product_select,
     product_rendercreate,
     product_create,
     product_renderupdate,
     product_update,
-    product_delete
+    product_delete,
+    count
 }

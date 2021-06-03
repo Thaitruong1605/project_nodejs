@@ -2,10 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 var fs = require('fs');
-
-
 var multer = require('multer');
-
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/img/products')
@@ -15,7 +12,6 @@ var storage = multer.diskStorage({
         cb(null, Date.now() + '-ID'+req.body.p_id+file.originalname.substring(file.originalname.lastIndexOf('.'), file.originalname.length));
     }
 });
-
 var upload = multer({storage:storage}).single('pimg');
 
 const sizeController = require("../../controllers/sizeController");
@@ -26,8 +22,40 @@ const productController = require("../../controllers/productController");
 const orderController = require("../../controllers/orderController");
 const productimageController = require("../../controllers/productimageController");
 
-router.get("/", function (req, res) {
-    res.render("./backend", { page_name: "Dashboard" });
+const dashboardAPI = require("../../models/dashboard");
+// DASHBOARD 
+
+router.get("/", async function (req, res) { 
+    let totalamount_per_month = [];
+    let count_orders, count_users, count_products, totalamount;
+    
+    try{
+        await dashboardAPI.totalamount().then(function(data) {totalamount  = data; });
+    }catch (err){
+        console.log (err);
+    }
+    try{
+        await dashboardAPI.totalamount_per_month().then(function(data) {totalamount_per_month  = data; });
+    }catch (err){
+        console.log (err);
+    }
+    try {
+        await dashboardAPI.count_orders().then( function(data){ count_orders = data[0].count });
+    }catch (err){
+        console.log (err);
+    }
+    try{
+        await dashboardAPI.count_products().then( function(data){ count_products = data[0].count });
+    }catch(err){
+        console.log (err);
+    }
+    try{
+        await dashboardAPI.count_users().then( function(data){ count_users = data[0].count });
+    }catch(err){
+        console.log (err);
+    }
+    console.log(totalamount_per_month);
+    res.render("./backend", { page_name: "Dashboard", totalamount_per_month, count_orders, count_users, count_products, totalamount});
 });
 
 // SIZE ---------------------------------------------------------------------------- 
@@ -166,8 +194,9 @@ router.get("/product-images/delete", function (req, res) {
 // ORDER ----------------------------------\
 router.get("/orders", function(req, res){
     orderController.order_select(req,res);
-})
+});
 router.get("/orders/order_detail", function(req, res){
     orderController.order_detail(req,res);
-})
+});
+
 module.exports = router;

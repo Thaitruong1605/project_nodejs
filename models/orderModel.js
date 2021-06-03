@@ -64,5 +64,5 @@ module.exports = {
     order_selectAll,
     order_selectbyId,
     payment_confirmation,
-    order_detail
+    order_detail,
 }

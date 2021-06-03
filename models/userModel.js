@@ -39,11 +39,11 @@ let user_update = (username, user_inf) => {
         )
     });
 };
-let user_delete = (t_id) => {
+let user_delete = (username) => {
     return new Promise(async (resolve, reject) => {
         conn.query(
-            'DELETE FROM users WHERE t_id= ? ',
-            t_id,
+            'DELETE FROM users WHERE username= ? ',
+            username,
             function (err) {
                 if (err) { reject(err); }
                 else {
@@ -58,5 +58,5 @@ module.exports = {
     user_selectAll,
     user_selectbyUsername,
     user_update,
-    user_delete
+    user_delete,
 }

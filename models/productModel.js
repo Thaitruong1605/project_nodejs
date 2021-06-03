@@ -3,7 +3,7 @@ const conn = require('../dbconnect');
 let product_selectAll = () => {
     return new Promise( (resolve, reject) => {
         conn.query(
-            'SELECT p_id ,p_name, p_price, p_oldPrice, p_date, p_number, p_description, p_name, t_name FROM products p LEFT JOIN sizes s ON p.s_id = s.s_id LEFT JOIN types t ON p.t_id = t.t_id;',
+            'SELECT p_id ,p_name, p_price, p_date, p_number, p_description, p_name, t_name FROM products p LEFT JOIN sizes s ON p.s_id = s.s_id LEFT JOIN types t ON p.t_id = t.t_id;',
             function (err, results) {
                 if (err) { reject(err); }
                 else {

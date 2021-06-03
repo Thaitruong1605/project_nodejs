@@ -22,7 +22,6 @@ let createUser = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
             birthday: req.body.birthday,
-            is_active: 1,
             is_admin: 0
         };
         try {
